@@ -7,6 +7,11 @@
   const searchForm = document.getElementById('search-form');
   const categoryFilter = document.getElementById('category-filter');
   const sortSelect = document.getElementById('sort-select');
+  const skinFilter = document.getElementById('skin-filter');
+  const needFilter = document.getElementById('need-filter');
+  const needCategoryFilter = document.getElementById('need-category-filter');
+  const priceFilter = document.getElementById('price-filter');
+  const applyNeedsButton = document.getElementById('apply-needs');
   const clearFiltersButton = document.getElementById('clear-filters');
   const emptyResetButton = document.getElementById('empty-reset');
   const resultCount = document.getElementById('result-count');
@@ -56,7 +61,18 @@
       const matchesCategory = (activeCategory === 'all' || card.dataset.category === activeCategory) &&
         (category === 'all' || card.dataset.category === category);
       const searchable = normalized([card.dataset.name, card.dataset.brand, card.dataset.category, categoryLabels[card.dataset.category] || '', card.querySelector('.product-meta')?.textContent || ''].join(' '));
-      return matchesCategory && (!query || searchable.includes(query));
+      const selectedSkin = skinFilter.value;
+      const selectedNeed = needFilter.value;
+      const needCategory = needCategoryFilter.value;
+      const priceBand = priceFilter.value;
+      const skinTags = (card.dataset.skin || '').split(' ');
+      const needTags = (card.dataset.needs || '').split(' ');
+      const matchesSkin = selectedSkin === 'all' || skinTags.includes(selectedSkin) || skinTags.includes('any');
+      const matchesNeed = selectedNeed === 'all' || needTags.includes(selectedNeed);
+      const matchesNeedCategory = needCategory === 'all' || card.dataset.category === needCategory;
+      const priceParts = priceBand === 'all' ? null : priceBand.split('-').map(Number);
+      const matchesPrice = !priceParts || (Number(card.dataset.price) >= priceParts[0] && Number(card.dataset.price) <= priceParts[1]);
+      return matchesCategory && matchesSkin && matchesNeed && matchesNeedCategory && matchesPrice && (!query || searchable.includes(query));
     });
 
     const sort = sortSelect.value;
@@ -94,6 +110,10 @@
     searchInput.value = '';
     categoryFilter.value = 'all';
     sortSelect.value = 'featured';
+    skinFilter.value = 'all';
+    needFilter.value = 'all';
+    needCategoryFilter.value = 'all';
+    priceFilter.value = 'all';
     activeCategory = 'all';
     document.querySelectorAll('.category-chip').forEach((button) => {
       const selected = button.dataset.category === 'all';
@@ -146,6 +166,13 @@
   });
   categoryFilter.addEventListener('change', () => setCategory(categoryFilter.value));
   sortSelect.addEventListener('change', filterAndSortProducts);
+  [skinFilter, needFilter, needCategoryFilter, priceFilter].forEach((control) => control.addEventListener('change', filterAndSortProducts));
+  applyNeedsButton.addEventListener('click', () => {
+    if (needCategoryFilter.value !== 'all') setCategory(needCategoryFilter.value);
+    filterAndSortProducts();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    showToast('Đã lọc sản phẩm theo nhu cầu bạn chọn.');
+  });
   clearFiltersButton.addEventListener('click', clearFilters);
   emptyResetButton.addEventListener('click', clearFilters);
 
