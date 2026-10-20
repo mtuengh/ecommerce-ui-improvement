@@ -23,6 +23,14 @@
   const summaryTotal = document.getElementById('summary-total');
   const checkoutButton = document.getElementById('checkout-demo');
   const toast = document.getElementById('toast');
+  const imageUpload = document.getElementById('product-image-upload');
+  const imagePreviewWrap = document.getElementById('image-preview-wrap');
+  const imagePreview = document.getElementById('image-preview');
+  const imageCategory = document.getElementById('image-category');
+  const searchByImageButton = document.getElementById('search-by-image');
+  const removeImageButton = document.getElementById('remove-image');
+  const imageSearchStatus = document.getElementById('image-search-status');
+  let selectedImageUrl = null;
 
   const cart = new Map();
   const categoryLabels = { skincare: 'chăm sóc da', makeup: 'trang điểm', body: 'chăm sóc cơ thể' };
@@ -173,6 +181,54 @@
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
     showToast('Đã lọc sản phẩm theo nhu cầu bạn chọn.');
   });
+  imageUpload.addEventListener('change', () => {
+    const file = imageUpload.files && imageUpload.files[0];
+    imageSearchStatus.classList.remove('error');
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      imageSearchStatus.textContent = 'Tệp đã chọn không phải hình ảnh. Hãy chọn JPG, PNG hoặc WEBP.';
+      imageSearchStatus.classList.add('error');
+      imageUpload.value = '';
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      imageSearchStatus.textContent = 'Ảnh quá lớn. Vui lòng chọn ảnh nhỏ hơn 8 MB.';
+      imageSearchStatus.classList.add('error');
+      imageUpload.value = '';
+      return;
+    }
+    if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+    selectedImageUrl = URL.createObjectURL(file);
+    imagePreview.src = selectedImageUrl;
+    imagePreviewWrap.hidden = false;
+    imageSearchStatus.textContent = 'Đã chọn: ' + file.name + '. Chọn danh mục rồi nhấn “Tìm sản phẩm”.';
+  });
+
+  removeImageButton.addEventListener('click', () => {
+    if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl);
+    selectedImageUrl = null;
+    imageUpload.value = '';
+    imagePreview.removeAttribute('src');
+    imagePreviewWrap.hidden = true;
+    imageSearchStatus.classList.remove('error');
+    imageSearchStatus.textContent = 'Ảnh đã được xóa.';
+  });
+
+  searchByImageButton.addEventListener('click', () => {
+    if (!selectedImageUrl) {
+      imageSearchStatus.textContent = 'M chọn ảnh trước rồi t mới lọc sản phẩm được nha.';
+      imageSearchStatus.classList.add('error');
+      imageUpload.focus();
+      return;
+    }
+    imageSearchStatus.classList.remove('error');
+    const category = imageCategory.value;
+    setCategory(category);
+    filterAndSortProducts();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    imageSearchStatus.textContent = 'Đã lọc sản phẩm theo danh mục ' + (categoryLabels[category] || 'tất cả danh mục') + '. Đây là kết quả demo, chưa phải nhận diện ảnh tự động.';
+  });
+
   clearFiltersButton.addEventListener('click', clearFilters);
   emptyResetButton.addEventListener('click', clearFilters);
 

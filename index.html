@@ -113,6 +113,37 @@
         <div class="need-finder-bottom"><p>Gợi ý tham khảo theo thông tin minh họa của sản phẩm, không thay thế tư vấn da liễu.</p><button class="button button-primary" id="apply-needs" type="button">Tìm sản phẩm phù hợp <span aria-hidden="true">→</span></button></div>
       </section>
 
+      <section class="image-search-panel" aria-labelledby="image-search-title">
+        <div class="image-search-copy">
+          <p class="eyebrow">VISUAL PRODUCT SEARCH</p>
+          <h3 id="image-search-title">Tìm sản phẩm bằng hình ảnh</h3>
+          <p>Tải ảnh món đồ bạn đang tìm. Ảnh được xem ngay trên trình duyệt; chọn thêm danh mục để lọc sản phẩm minh họa tương ứng.</p>
+        </div>
+        <div class="image-search-controls">
+          <label class="image-upload-drop" for="product-image-upload">
+            <span class="image-upload-icon" aria-hidden="true">＋</span>
+            <strong>Chọn ảnh từ thiết bị</strong>
+            <small>JPG, PNG, WEBP · tối đa 8 MB</small>
+            <input id="product-image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+          </label>
+          <div class="image-preview-wrap" id="image-preview-wrap" hidden>
+            <img id="image-preview" alt="Ảnh bạn đã chọn để tìm sản phẩm" />
+            <button type="button" id="remove-image" class="text-link">Xóa ảnh</button>
+          </div>
+          <label class="control-label" for="image-category">Bạn muốn tìm nhóm sản phẩm nào?
+            <select id="image-category">
+              <option value="all">Tất cả danh mục</option>
+              <option value="skincare">Chăm sóc da</option>
+              <option value="makeup">Trang điểm</option>
+              <option value="body">Chăm sóc cơ thể</option>
+            </select>
+          </label>
+          <button class="button button-primary" id="search-by-image" type="button">Tìm sản phẩm <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="image-search-status" id="image-search-status" role="status">Chưa có ảnh nào được chọn.</p>
+        <p class="image-search-disclaimer">Bản demo hiện dùng ảnh tải lên để xem trước và lọc theo danh mục bạn chọn; chưa tự nhận diện vật thể hoặc so khớp hình ảnh bằng AI.</p>
+      </section>
+
       <div class="product-tools">
         <p class="result-count" id="result-count" aria-live="polite">Hiển thị <strong>4</strong> sản phẩm</p>
         <div class="tool-controls">
