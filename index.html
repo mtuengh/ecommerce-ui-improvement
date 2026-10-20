@@ -94,6 +94,25 @@
         <button class="category-chip" type="button" data-category="body" aria-pressed="false">Chăm sóc cơ thể</button>
       </div>
 
+      <section class="need-finder" aria-labelledby="need-finder-title">
+        <div class="need-finder-heading"><span class="need-finder-icon" aria-hidden="true">✳</span><div><p class="eyebrow">PERSONAL BEAUTY MATCH</p><h3 id="need-finder-title">Tìm sản phẩm theo nhu cầu</h3><p>Chọn vài tiêu chí bên dưới để lọc nhanh những món phù hợp hơn với bạn.</p></div></div>
+        <div class="need-finder-fields">
+          <label class="control-label" for="skin-filter">Loại da
+            <select id="skin-filter"><option value="all">Tất cả loại da</option><option value="dry">Da khô</option><option value="oily">Da dầu</option><option value="combination">Da hỗn hợp</option><option value="sensitive">Da nhạy cảm</option><option value="normal">Da thường</option><option value="body">Da cơ thể</option><option value="any">Mọi loại da</option></select>
+          </label>
+          <label class="control-label" for="need-filter">Nhu cầu chính
+            <select id="need-filter"><option value="all">Chọn nhu cầu</option><option value="hydration">Cấp ẩm / da khô</option><option value="soothing">Làm dịu da</option><option value="barrier">Hỗ trợ hàng rào da</option><option value="makeup">Trang điểm</option><option value="body-care">Chăm sóc cơ thể</option></select>
+          </label>
+          <label class="control-label" for="need-category-filter">Danh mục
+            <select id="need-category-filter"><option value="all">Tất cả danh mục</option><option value="skincare">Chăm sóc da</option><option value="makeup">Trang điểm</option><option value="body">Chăm sóc cơ thể</option></select>
+          </label>
+          <label class="control-label" for="price-filter">Khoảng giá
+            <select id="price-filter"><option value="all">Mọi mức giá</option><option value="0-200000">Dưới 200.000₫</option><option value="200000-300000">200.000–300.000₫</option><option value="300000-500000">300.000–500.000₫</option></select>
+          </label>
+        </div>
+        <div class="need-finder-bottom"><p>Gợi ý tham khảo theo thông tin minh họa của sản phẩm, không thay thế tư vấn da liễu.</p><button class="button button-primary" id="apply-needs" type="button">Tìm sản phẩm phù hợp <span aria-hidden="true">→</span></button></div>
+      </section>
+
       <div class="product-tools">
         <p class="result-count" id="result-count" aria-live="polite">Hiển thị <strong>4</strong> sản phẩm</p>
         <div class="tool-controls">
@@ -118,7 +137,7 @@
       </div>
 
       <div class="product-grid" id="product-grid">
-        <article class="product-card" data-id="barrier-cream" data-name="Gel dưỡng ẩm phục hồi da Daily Barrier Cream" data-brand="Skincare Studio" data-category="skincare" data-price="289000" data-featured="1">
+        <article class="product-card" data-id="barrier-cream" data-name="Gel dưỡng ẩm phục hồi da Daily Barrier Cream" data-brand="Skincare Studio" data-category="skincare" data-price="289000" data-skin="dry normal combination" data-needs="hydration barrier" data-featured="1">
           <div class="product-image image-cream">
             <span class="product-badge badge-sand">BÁN CHẠY</span>
             <button class="favorite-button" type="button" aria-label="Thêm Gel dưỡng ẩm vào yêu thích" aria-pressed="false">♡</button>
@@ -134,7 +153,7 @@
           </div>
         </article>
 
-        <article class="product-card" data-id="comfort-serum" data-name="Serum cấp ẩm và làm dịu Skin Comfort Serum" data-brand="Glow Lab" data-category="skincare" data-price="325000" data-featured="2">
+        <article class="product-card" data-id="comfort-serum" data-name="Serum cấp ẩm và làm dịu Skin Comfort Serum" data-brand="Glow Lab" data-category="skincare" data-price="325000" data-skin="sensitive normal dry oily combination" data-needs="hydration soothing" data-featured="2">
           <div class="product-image image-serum">
             <span class="product-badge badge-green">GỢI Ý</span>
             <button class="favorite-button" type="button" aria-label="Thêm Serum vào yêu thích" aria-pressed="false">♡</button>
@@ -150,7 +169,7 @@
           </div>
         </article>
 
-        <article class="product-card" data-id="lip-tint" data-name="Son tint bóng Dewy Color Lip Tint" data-brand="Color Play" data-category="makeup" data-price="179000" data-featured="3">
+        <article class="product-card" data-id="lip-tint" data-name="Son tint bóng Dewy Color Lip Tint" data-brand="Color Play" data-category="makeup" data-price="179000" data-skin="any" data-needs="makeup" data-featured="3">
           <div class="product-image image-lip">
             <span class="product-badge badge-rose">MAKEUP PICK</span>
             <button class="favorite-button" type="button" aria-label="Thêm Son tint vào yêu thích" aria-pressed="false">♡</button>
@@ -166,7 +185,7 @@
           </div>
         </article>
 
-        <article class="product-card" data-id="body-lotion" data-name="Sữa dưỡng thể mềm mịn Soft Glow Body Lotion" data-brand="Body Ritual" data-category="body" data-price="215000" data-featured="4">
+        <article class="product-card" data-id="body-lotion" data-name="Sữa dưỡng thể mềm mịn Soft Glow Body Lotion" data-brand="Body Ritual" data-category="body" data-price="215000" data-skin="body dry normal" data-needs="hydration body-care" data-featured="4">
           <div class="product-image image-body">
             <span class="product-badge badge-blue">DAILY PICK</span>
             <button class="favorite-button" type="button" aria-label="Thêm Sữa dưỡng thể vào yêu thích" aria-pressed="false">♡</button>
