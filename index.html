@@ -1,281 +1,364 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Giao diện minh họa cửa hàng mỹ phẩm với tìm kiếm, lọc sản phẩm và giỏ hàng chạy tại trình duyệt.">
-  <title>Glow Edit — Khám phá sản phẩm làm đẹp</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/app.js" defer></script>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Glow Edit – bộ sưu tập làm đẹp minh họa được cải tiến từ Thegioiskinfood: sản phẩm, lọc theo nhu cầu và giỏ hàng demo.">
+ <meta name="theme-color" content="#fffaf8">
+ <title>Glow Edit | Chạm vào vẻ đẹp của riêng bạn</title>
+ <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="stylesheet" href="css/style.css">
+ <script src="js/visual-search.js" defer></script>
+<script src="js/app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Bỏ qua đến nội dung chính</a>
-  <div class="announcement">
-    <p>GLOW DAYS <span aria-hidden="true">✦</span> Chăm da có gu, chọn sản phẩm thật dễ</p>
-    <a href="#products">Khám phá bộ sưu tập <span aria-hidden="true">↗</span></a>
+ <a class="skip-link" href="#main">Bỏ qua đến nội dung chính</a>
+ <div class="top-promo"><div class="wrap top-promo-inner"><span>✦ GLOW EDIT — BEAUTY FOR EVERY DAY</span><span>HÌNH ẢNH &amp; GIÁ CHỈ MANG TÍNH MINH HỌA</span><a href="#products">Khám phá ngay <span aria-hidden="true">↗</span></a></div></div>
+ <header class="site-header">
+  <div class="wrap header-main">
+   <a class="brand" href="#top" aria-label="Glow Edit – về trang chủ"><span class="brand-symbol" aria-hidden="true">✳</span><span class="brand-wordmark">glow<span>edit</span><small>THE BEAUTY EDIT</small></span></a>
+   <form id="search-form" class="search-form" role="search"><label class="sr-only" for="site-search">Tìm sản phẩm hoặc thương hiệu</label><span class="search-icon" aria-hidden="true">⌕</span><input type="search" name="q" id="site-search" placeholder="Tìm sản phẩm, thương hiệu, danh mục..." autocomplete="off"><button type="submit">Tìm kiếm <span aria-hidden="true">→</span></button></form>
+   <div class="header-actions"><a class="header-wishlist" href="#products" aria-label="Chọn sản phẩm yêu thích"><span aria-hidden="true">♡</span><small>Yêu thích <b id="wishlist-count">0</b></small></a><a class="cart-shortcut" href="#cart" aria-label="Đến giỏ hàng"><span class="cart-icon" aria-hidden="true">♧</span><small>Giỏ hàng</small><span id="cart-count" class="cart-count" aria-live="polite">0</span></a></div>
   </div>
-
-  <header class="site-header">
-    <div class="header-main wrap">
-      <a class="brand" href="#top" aria-label="Glow Edit - về đầu trang">
-        <span class="brand-symbol" aria-hidden="true">g.</span>
-        <span class="brand-wordmark">glow<span>edit</span><small>THE BEAUTY EDIT</small></span>
-      </a>
-
-      <form class="search-form" id="search-form" role="search">
-        <label class="sr-only" for="site-search">Tìm sản phẩm, danh mục hoặc thương hiệu</label>
-        <span class="search-icon" aria-hidden="true">⌕</span>
-        <input id="site-search" name="q" type="search" placeholder="Tìm sản phẩm, danh mục hoặc thương hiệu..." autocomplete="off">
-        <button type="submit">Tìm kiếm</button>
-      </form>
-
-      <a class="cart-shortcut" href="#cart" aria-label="Xem giỏ hàng">
-        <span class="cart-icon" aria-hidden="true">♧</span>
-        <span class="cart-label">Giỏ hàng</span>
-        <span class="cart-count" id="cart-count" aria-live="polite">0</span>
-      </a>
-    </div>
-
-    <nav class="main-nav" aria-label="Danh mục chính">
-      <div class="wrap nav-inner">
-        <a class="nav-link active" href="#products" data-category-link="all">Tất cả sản phẩm</a>
-        <a class="nav-link" href="#products" data-category-link="skincare">Chăm sóc da</a>
-        <a class="nav-link" href="#products" data-category-link="makeup">Trang điểm</a>
-        <a class="nav-link" href="#products" data-category-link="body">Chăm sóc cơ thể</a>
-        <a class="nav-link nav-deal" href="#products" data-category-link="all">Ưu đãi nổi bật <span aria-hidden="true">✦</span></a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero wrap" id="top" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span></span> YOUR DAILY BEAUTY EDIT</p>
-        <h1 id="hero-title">Chăm da có gu.<br><em>Tỏa sáng theo cách riêng.</em></h1>
-        <p class="hero-intro">Khám phá những món làm đẹp yêu thích — với thông tin rõ ràng, cách tìm đơn giản và lựa chọn dễ dàng hơn.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#products">Khám phá sản phẩm <span aria-hidden="true">→</span></a>
-          <a class="text-link" href="#why-us">Xem điểm nổi bật</a>
-        </div>
-        <p class="hero-note"><span aria-hidden="true">✳</span> Giao diện minh họa phục vụ học tập</p>
-      </div>
-      <div class="hero-visual" aria-label="Minh họa các sản phẩm chăm sóc sắc đẹp" role="img">
-        <div class="hero-sun"></div>
-        <div class="hero-label label-top">YOUR SKIN, YOUR STORY</div>
-        <img class="hero-product hero-product-one" src="images/serum.svg" alt="">
-        <img class="hero-product hero-product-two" src="images/moisturizer.svg" alt="">
-        <img class="hero-product hero-product-three" src="images/lip-tint.svg" alt="">
-        <span class="hero-sticker">a little<br>glow goes<br>a long way <b>✦</b></span>
-        <span class="hero-label label-bottom">CURATED FOR EVERYDAY</span>
-      </div>
-    </section>
-
-    <section class="benefits wrap" id="why-us" aria-label="Điểm nổi bật của giao diện">
-      <div class="benefit-item"><span class="benefit-icon" aria-hidden="true">⌕</span><div><strong>Tìm kiếm nhanh</strong><small>Tìm theo tên, thương hiệu</small></div></div>
-      <div class="benefit-item"><span class="benefit-icon" aria-hidden="true">☷</span><div><strong>Lọc dễ hiểu</strong><small>Chọn đúng nhóm sản phẩm</small></div></div>
-      <div class="benefit-item"><span class="benefit-icon" aria-hidden="true">♡</span><div><strong>Thông tin rõ ràng</strong><small>Giá và mô tả dễ xem</small></div></div>
-      <div class="benefit-item"><span class="benefit-icon" aria-hidden="true">♧</span><div><strong>Giỏ hàng minh bạch</strong><small>Xem số lượng và tạm tính</small></div></div>
-    </section>
-
-    <section class="product-section wrap" id="products" aria-labelledby="products-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">THE BEAUTY EDIT</p>
-          <h2 id="products-title">Tìm món hợp với bạn</h2>
-          <p class="section-intro">Lọc theo nhu cầu, sắp xếp theo giá hoặc tìm trực tiếp sản phẩm bạn đang cần.</p>
-        </div>
-        <span class="sample-tag">SẢN PHẨM MINH HỌA</span>
-      </div>
-
-      <div class="category-chips" role="group" aria-label="Lọc nhanh theo danh mục">
-        <button class="category-chip selected" type="button" data-category="all" aria-pressed="true">Tất cả <span>4</span></button>
-        <button class="category-chip" type="button" data-category="skincare" aria-pressed="false">Chăm sóc da</button>
-        <button class="category-chip" type="button" data-category="makeup" aria-pressed="false">Trang điểm</button>
-        <button class="category-chip" type="button" data-category="body" aria-pressed="false">Chăm sóc cơ thể</button>
-      </div>
-
-      <section class="need-finder" aria-labelledby="need-finder-title">
-        <div class="need-finder-heading"><span class="need-finder-icon" aria-hidden="true">✳</span><div><p class="eyebrow">PERSONAL BEAUTY MATCH</p><h3 id="need-finder-title">Tìm sản phẩm theo nhu cầu</h3><p>Chọn vài tiêu chí bên dưới để lọc nhanh những món phù hợp hơn với bạn.</p></div></div>
-        <div class="need-finder-fields">
-          <label class="control-label" for="skin-filter">Loại da
+  <nav class="main-nav" aria-label="Điều hướng chính"><div class="wrap nav-inner"><a href="#top">Trang chủ</a><a class="nav-link active" href="#products" data-category-link="all">Tất cả sản phẩm</a><a class="nav-link" href="#products" data-category-link="skincare">Chăm sóc da</a><a class="nav-link" href="#products" data-category-link="makeup">Trang điểm</a><a class="nav-link" href="#products" data-category-link="body">Chăm sóc cơ thể</a><a href="#advanced-tools" class="nav-extra">Tìm theo nhu cầu</a><a class="nav-deal" href="#products">Ưu đãi ✦</a></div></nav>
+ </header>
+ <main id="main">
+  <section id="top" class="hero-section wrap" aria-labelledby="hero-title">
+   <div class="hero-main">
+    <div class="hero-copy"><p class="eyebrow">THE EVERYDAY BEAUTY EDIT</p><h1 id="hero-title">Đẹp theo cách <em>của riêng bạn.</em></h1><p>Khám phá những món làm đẹp được tuyển chọn cho thói quen mỗi ngày — tinh tế, dễ tìm và dễ chọn.</p><div class="hero-actions"><a class="button button-primary" href="#products">Khám phá sản phẩm <span aria-hidden="true">↗</span></a><a href="#categories" class="underlined-link">Xem danh mục</a></div><p class="hero-footnote">Một góc làm đẹp, thật nhiều cảm hứng.</p></div>
+    <div class="hero-photo"><img src="images/hero.webp" alt="Bộ sưu tập chai lọ mỹ phẩm, serum, kem dưỡng và son trên nền hoa pastel" width="1250" height="938" fetchpriority="high"><div class="hero-photo-label">GLOW DAYS • EDITION 2026</div></div>
+   </div>
+   <div class="hero-aside"><a class="promo-tile promo-tile-green" href="#products" data-promo-category="skincare"><img src="images/serum.webp" alt="Tinh chất dưỡng da màu đào" width="720" height="720"><span class="promo-copy"><small>SKINCARE EDIT</small><strong>Chạm nhẹ,<br>da thêm rạng rỡ.</strong><span>Khám phá ngay ↗</span></span></a><a class="promo-tile promo-tile-pink" href="#products" data-promo-category="makeup"><img src="images/lip-tint.webp" alt="Son tint sắc hồng đào" width="720" height="720"><span class="promo-copy"><small>MAKEUP DIARY</small><strong>Màu sắc cho<br>ngày tươi mới.</strong><span>Xem bộ sưu tập ↗</span></span></a></div>
+  </section>
+  <section class="promise-row wrap" aria-label="Điểm nổi bật"><div><span aria-hidden="true">✦</span><strong>Thông tin rõ ràng</strong><small>Giá và mô tả dễ so sánh</small></div><div><span aria-hidden="true">⌕</span><strong>Tìm kiếm nhanh</strong><small>Tên, thương hiệu, danh mục</small></div><div><span aria-hidden="true">♡</span><strong>Lựa chọn dễ dàng</strong><small>Yêu thích và thêm vào giỏ</small></div><div><span aria-hidden="true">☷</span><strong>Khám phá theo nhu cầu</strong><small>Bộ lọc trực quan, dễ dùng</small></div></section>
+  <section id="categories" class="categories-section wrap" aria-labelledby="categories-title"><div class="section-eyebrow">EXPLORE YOUR BEAUTY</div><div class="section-heading"><div><h2 id="categories-title">Chọn điều bạn yêu thích</h2><p>Ba góc làm đẹp gần gũi, với những lựa chọn dành cho nhiều nhu cầu khác nhau.</p></div><a class="underlined-link" href="#products">Xem tất cả sản phẩm ↗</a></div><div class="category-showcase"><a href="#products" class="category-tile" data-category-link="skincare"><span class="category-photo"><img src="images/serum.webp" alt="Bộ sưu tập chăm sóc da" loading="lazy"></span><span class="category-text"><strong>Chăm sóc da</strong><small>Serum, kem dưỡng, làm sạch</small><span aria-hidden="true">↗</span></span></a><a href="#products" class="category-tile" data-category-link="makeup"><span class="category-photo"><img src="images/cushion.webp" alt="Bộ sưu tập trang điểm" loading="lazy"></span><span class="category-text"><strong>Trang điểm</strong><small>Son môi, phấn nước</small><span aria-hidden="true">↗</span></span></a><a href="#products" class="category-tile" data-category-link="body"><span class="category-photo"><img src="images/body-lotion.webp" alt="Bộ sưu tập chăm sóc cơ thể" loading="lazy"></span><span class="category-text"><strong>Chăm sóc cơ thể</strong><small>Dưỡng thể, sữa tắm và tẩy da chết</small><span aria-hidden="true">↗</span></span></a></div></section>
+  <section id="products" class="product-section wrap" aria-labelledby="products-title"><div class="section-eyebrow">CURATED WITH CARE</div><div class="section-heading"><div><h2 id="products-title">Những món làm đẹp đáng khám phá</h2><p>Mỗi sản phẩm có hình ảnh, giá và mô tả minh họa rõ ràng để bạn dễ lựa chọn.</p></div><span class="demo-label">DỮ LIỆU SẢN PHẨM MẪU</span></div>
+   <div class="category-chips" role="group" aria-label="Lọc sản phẩm theo danh mục"><button class="category-chip selected" data-category="all" type="button" aria-pressed="true">Tất cả <span>16</span></button><button class="category-chip" data-category="skincare" type="button" aria-pressed="false">Chăm sóc da <span>6</span></button><button class="category-chip" data-category="makeup" type="button" aria-pressed="false">Trang điểm <span>5</span></button><button class="category-chip" data-category="body" type="button" aria-pressed="false">Chăm sóc cơ thể <span>5</span></button></div>
+   <div class="product-tools"><p id="result-count" class="result-count" aria-live="polite">Hiển thị <strong>16</strong> sản phẩm</p><div class="tool-controls"><label class="control-label" for="category-filter">Danh mục<select id="category-filter"><option value="all">Tất cả danh mục</option><option value="skincare">Chăm sóc da</option><option value="makeup">Trang điểm</option><option value="body">Chăm sóc cơ thể</option></select></label><label class="control-label" for="sort-select">Sắp xếp<select id="sort-select"><option value="featured">Đề xuất</option><option value="price-asc">Giá thấp đến cao</option><option value="price-desc">Giá cao đến thấp</option><option value="name-asc">Tên sản phẩm A–Z</option></select></label><button id="clear-filters" type="button" class="clear-filters">Xóa bộ lọc</button></div></div>
+   <div class="product-grid" id="product-grid"><article class="product-card" data-id="cleanser-fresh" data-name="Sữa rửa mặt làm dịu Herbal Fresh Cleanser" data-brand="GLOW GARDEN" data-category="skincare" data-price="235000" data-skin="oily combination normal sensitive" data-needs="soothing hydration" data-featured="1">
+  <div class="product-image">
+   <span class="product-badge">BÁN CHẠY</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Sữa rửa mặt làm dịu Herbal Fresh Cleanser vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/cleanser.webp" alt="Ảnh minh họa Sữa rửa mặt làm dịu Herbal Fresh Cleanser" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">GLOW GARDEN</p>
+   <h3>Sữa rửa mặt làm dịu Herbal Fresh Cleanser</h3>
+   <p class="product-meta">Làm sạch dịu nhẹ · 150 ml</p>
+   <div class="product-price"><strong>235.000₫</strong><del>295.000₫</del><span class="discount">-20%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Một bước làm sạch nhẹ nhàng giúp chăm sóc làn da hằng ngày. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="cleanser-fresh">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="serum-comfort" data-name="Serum cấp ẩm Skin Comfort Serum" data-brand="GLOW LAB" data-category="skincare" data-price="325000" data-skin="sensitive normal dry oily combination" data-needs="hydration soothing" data-featured="2">
+  <div class="product-image">
+   <span class="product-badge">GỢI Ý</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Serum cấp ẩm Skin Comfort Serum vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/serum.webp" alt="Ảnh minh họa Serum cấp ẩm Skin Comfort Serum" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">GLOW LAB</p>
+   <h3>Serum cấp ẩm Skin Comfort Serum</h3>
+   <p class="product-meta">Tinh chất cấp ẩm · 30 ml</p>
+   <div class="product-price"><strong>325.000₫</strong><del>420.000₫</del><span class="discount">-23%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Tinh chất chăm sóc da được giới thiệu bằng hình ảnh sản phẩm minh họa. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="serum-comfort">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="cream-barrier" data-name="Kem dưỡng mềm da Daily Barrier Cream" data-brand="SKINCARE STUDIO" data-category="skincare" data-price="289000" data-skin="dry normal combination sensitive" data-needs="hydration barrier" data-featured="3">
+  <div class="product-image">
+   <span class="product-badge">ƯU ĐÃI</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Kem dưỡng mềm da Daily Barrier Cream vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/moisturizer.webp" alt="Ảnh minh họa Kem dưỡng mềm da Daily Barrier Cream" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">SKINCARE STUDIO</p>
+   <h3>Kem dưỡng mềm da Daily Barrier Cream</h3>
+   <p class="product-meta">Kem dưỡng ẩm · 50 ml</p>
+   <div class="product-price"><strong>289.000₫</strong><del>390.000₫</del><span class="discount">-26%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Thể hiện cách trình bày kem dưỡng, giá và thông tin sử dụng rõ ràng. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="cream-barrier">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="sun-veil" data-name="Kem chống nắng Sun Veil UV Shield" data-brand="SOLAR DEW" data-category="skincare" data-price="279000" data-skin="normal dry oily combination sensitive" data-needs="soothing" data-featured="4">
+  <div class="product-image">
+   <span class="product-badge">MỚI</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Kem chống nắng Sun Veil UV Shield vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/sunscreen.webp" alt="Ảnh minh họa Kem chống nắng Sun Veil UV Shield" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">SOLAR DEW</p>
+   <h3>Kem chống nắng Sun Veil UV Shield</h3>
+   <p class="product-meta">Chống nắng · 50 ml</p>
+   <div class="product-price"><strong>279.000₫</strong><del>339.000₫</del><span class="discount">-18%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm chống nắng minh họa, không đại diện thông số kiểm nghiệm thực tế. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="sun-veil">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="toner-fresh" data-name="Nước cân bằng Gentle Daily Toner" data-brand="GLOW GARDEN" data-category="skincare" data-price="199000" data-skin="normal combination oily" data-needs="soothing hydration" data-featured="5">
+  <div class="product-image">
+   <span class="product-badge">DAILY CARE</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Nước cân bằng Gentle Daily Toner vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/cleanser-refresh.webp" alt="Ảnh minh họa Nước cân bằng Gentle Daily Toner" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">GLOW GARDEN</p>
+   <h3>Nước cân bằng Gentle Daily Toner</h3>
+   <p class="product-meta">Cân bằng da · 200 ml</p>
+   <div class="product-price"><strong>199.000₫</strong><del>259.000₫</del><span class="discount">-23%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Toner minh họa cho bước chăm sóc da sau làm sạch. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="toner-fresh">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="night-dew" data-name="Tinh chất dưỡng ẩm Night Dew Serum" data-brand="GLOW LAB" data-category="skincare" data-price="379000" data-skin="dry normal sensitive" data-needs="hydration barrier" data-featured="6">
+  <div class="product-image">
+   <span class="product-badge">EDITOR PICK</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Tinh chất dưỡng ẩm Night Dew Serum vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/serum-dew.webp" alt="Ảnh minh họa Tinh chất dưỡng ẩm Night Dew Serum" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">GLOW LAB</p>
+   <h3>Tinh chất dưỡng ẩm Night Dew Serum</h3>
+   <p class="product-meta">Tinh chất ban đêm · 30 ml</p>
+   <div class="product-price"><strong>379.000₫</strong><del>469.000₫</del><span class="discount">-19%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Cảm hứng chăm sóc da ban đêm với thiết kế mỹ phẩm tối giản. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="night-dew">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="lip-dewy" data-name="Son tint bóng Dewy Petal Lip Tint" data-brand="COLOR PLAY" data-category="makeup" data-price="179000" data-skin="any" data-needs="makeup" data-featured="7">
+  <div class="product-image">
+   <span class="product-badge">BÁN CHẠY</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Son tint bóng Dewy Petal Lip Tint vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/lip-tint.webp" alt="Ảnh minh họa Son tint bóng Dewy Petal Lip Tint" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">COLOR PLAY</p>
+   <h3>Son tint bóng Dewy Petal Lip Tint</h3>
+   <p class="product-meta">Son môi · 4 g</p>
+   <div class="product-price"><strong>179.000₫</strong><del>249.000₫</del><span class="discount">-28%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Son tint minh họa tông hồng dịu, dễ phối cùng phong cách trang điểm hằng ngày. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="lip-dewy">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="cushion-air" data-name="Phấn nước Radiant Air Cushion" data-brand="VELVET MUSE" data-category="makeup" data-price="369000" data-skin="dry normal combination any" data-needs="makeup" data-featured="8">
+  <div class="product-image">
+   <span class="product-badge">NEW IN</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Phấn nước Radiant Air Cushion vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/cushion.webp" alt="Ảnh minh họa Phấn nước Radiant Air Cushion" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">VELVET MUSE</p>
+   <h3>Phấn nước Radiant Air Cushion</h3>
+   <p class="product-meta">Phấn nước · 15 g</p>
+   <div class="product-price"><strong>369.000₫</strong><del>449.000₫</del><span class="discount">-18%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Minh họa hộp phấn nước với hình ảnh vật liệu và chất liệu đẹp mắt. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="cushion-air">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="lip-berry" data-name="Son tint Berry Bloom Lip Tint" data-brand="COLOR PLAY" data-category="makeup" data-price="189000" data-skin="any" data-needs="makeup" data-featured="9">
+  <div class="product-image">
+   <span class="product-badge">MAKEUP PICK</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Son tint Berry Bloom Lip Tint vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/lip-tint-berry.webp" alt="Ảnh minh họa Son tint Berry Bloom Lip Tint" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">COLOR PLAY</p>
+   <h3>Son tint Berry Bloom Lip Tint</h3>
+   <p class="product-meta">Son tint · 4 g</p>
+   <div class="product-price"><strong>189.000₫</strong><del>259.000₫</del><span class="discount">-27%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Một phiên bản màu son minh họa dành cho trang điểm tự nhiên. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="lip-berry">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="cushion-soft" data-name="Phấn nước Soft Satin Cushion" data-brand="VELVET MUSE" data-category="makeup" data-price="329000" data-skin="any" data-needs="makeup" data-featured="10">
+  <div class="product-image">
+   <span class="product-badge">YÊU THÍCH</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Phấn nước Soft Satin Cushion vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/cushion-soft.webp" alt="Ảnh minh họa Phấn nước Soft Satin Cushion" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">VELVET MUSE</p>
+   <h3>Phấn nước Soft Satin Cushion</h3>
+   <p class="product-meta">Phấn nền · 15 g</p>
+   <div class="product-price"><strong>329.000₫</strong><del>420.000₫</del><span class="discount">-22%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Lựa chọn minh họa có thiết kế phấn nền nhẹ nhàng và sang trọng. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="cushion-soft">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="lip-glow" data-name="Son dưỡng màu Rosy Glow Lip Oil" data-brand="COLOR PLAY" data-category="makeup" data-price="219000" data-skin="any" data-needs="makeup" data-featured="11">
+  <div class="product-image">
+   <span class="product-badge">TRENDING</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Son dưỡng màu Rosy Glow Lip Oil vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/lip-tint.webp" alt="Ảnh minh họa Son dưỡng màu Rosy Glow Lip Oil" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">COLOR PLAY</p>
+   <h3>Son dưỡng màu Rosy Glow Lip Oil</h3>
+   <p class="product-meta">Dưỡng môi · 5 ml</p>
+   <div class="product-price"><strong>219.000₫</strong><del>289.000₫</del><span class="discount">-24%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm mô phỏng cho danh mục son dưỡng có màu. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="lip-glow">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="body-lotion" data-name="Sữa dưỡng thể Soft Glow Body Lotion" data-brand="BODY RITUAL" data-category="body" data-price="215000" data-skin="body dry normal" data-needs="hydration body-care" data-featured="12">
+  <div class="product-image">
+   <span class="product-badge">DAILY PICK</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Sữa dưỡng thể Soft Glow Body Lotion vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/body-lotion.webp" alt="Ảnh minh họa Sữa dưỡng thể Soft Glow Body Lotion" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">BODY RITUAL</p>
+   <h3>Sữa dưỡng thể Soft Glow Body Lotion</h3>
+   <p class="product-meta">Dưỡng thể · 250 ml</p>
+   <div class="product-price"><strong>215.000₫</strong><del>285.000₫</del><span class="discount">-25%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Dưỡng thể dạng chai minh họa với hình ảnh chụp sản phẩm phong cách spa. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="body-lotion">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="body-wash" data-name="Sữa tắm Silky Bloom Body Wash" data-brand="BODY RITUAL" data-category="body" data-price="245000" data-skin="body normal dry" data-needs="body-care soothing" data-featured="13">
+  <div class="product-image">
+   <span class="product-badge">SPA CARE</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Sữa tắm Silky Bloom Body Wash vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/body-wash.webp" alt="Ảnh minh họa Sữa tắm Silky Bloom Body Wash" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">BODY RITUAL</p>
+   <h3>Sữa tắm Silky Bloom Body Wash</h3>
+   <p class="product-meta">Sữa tắm · 300 ml</p>
+   <div class="product-price"><strong>245.000₫</strong><del>310.000₫</del><span class="discount">-21%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sữa tắm minh họa giúp danh mục chăm sóc cơ thể phong phú hơn. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="body-wash">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="body-scrub" data-name="Tẩy tế bào chết Rose Milk Body Scrub" data-brand="BARE BLOOM" data-category="body" data-price="259000" data-skin="body normal dry" data-needs="body-care" data-featured="14">
+  <div class="product-image">
+   <span class="product-badge">NEW</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Tẩy tế bào chết Rose Milk Body Scrub vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/body-scrub.webp" alt="Ảnh minh họa Tẩy tế bào chết Rose Milk Body Scrub" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">BARE BLOOM</p>
+   <h3>Tẩy tế bào chết Rose Milk Body Scrub</h3>
+   <p class="product-meta">Tẩy da chết · 200 g</p>
+   <div class="product-price"><strong>259.000₫</strong><del>329.000₫</del><span class="discount">-21%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm mẫu dạng hũ, ảnh chụp thể hiện chất liệu và kết cấu rõ hơn. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="body-scrub">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="body-milk" data-name="Sữa dưỡng thể Cotton Cloud Body Milk" data-brand="BODY RITUAL" data-category="body" data-price="229000" data-skin="body dry normal" data-needs="hydration body-care" data-featured="15">
+  <div class="product-image">
+   <span class="product-badge">DỊU NHẸ</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Sữa dưỡng thể Cotton Cloud Body Milk vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/body-lotion-silk.webp" alt="Ảnh minh họa Sữa dưỡng thể Cotton Cloud Body Milk" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">BODY RITUAL</p>
+   <h3>Sữa dưỡng thể Cotton Cloud Body Milk</h3>
+   <p class="product-meta">Sữa dưỡng thể · 250 ml</p>
+   <div class="product-price"><strong>229.000₫</strong><del>299.000₫</del><span class="discount">-23%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sữa dưỡng thể phiên bản minh họa với tông màu mềm mại. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="body-milk">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article>
+<article class="product-card" data-id="body-smooth" data-name="Tẩy tế bào chết Peach Smooth Body Polish" data-brand="BARE BLOOM" data-category="body" data-price="275000" data-skin="body normal dry" data-needs="body-care" data-featured="16">
+  <div class="product-image">
+   <span class="product-badge">GỢI Ý</span>
+   <button class="favorite-button" type="button" aria-label="Thêm Tẩy tế bào chết Peach Smooth Body Polish vào yêu thích" aria-pressed="false">♡</button>
+   <img src="images/body-scrub-glow.webp" alt="Ảnh minh họa Tẩy tế bào chết Peach Smooth Body Polish" loading="lazy" width="720" height="720">
+  </div>
+  <div class="product-info">
+   <p class="product-brand">BARE BLOOM</p>
+   <h3>Tẩy tế bào chết Peach Smooth Body Polish</h3>
+   <p class="product-meta">Tẩy da chết · 200 g</p>
+   <div class="product-price"><strong>275.000₫</strong><del>345.000₫</del><span class="discount">-20%</span></div>
+   <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm minh họa khác trong nhóm chăm sóc cơ thể và thư giãn. Dữ liệu phục vụ demo.</p></details>
+   <button class="add-to-cart" type="button" data-add="body-smooth">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
+  </div>
+</article></div>
+   <div id="empty-results" class="empty-results" hidden><h3>Chưa tìm thấy sản phẩm</h3><p>Thử từ khóa hoặc danh mục khác để khám phá thêm nhé.</p><button id="empty-reset" type="button" class="button button-primary">Xem tất cả</button></div>
+  </section>
+  <section class="editorial-banner wrap" aria-label="Khám phá chăm sóc mỗi ngày"><div><span>YOUR BEAUTY, YOUR WAY</span><h2>Một chút chăm sóc,<br><em>một ngày thật khác.</em></h2><p>Không cần quá nhiều bước. Bắt đầu từ những điều phù hợp với bạn.</p><a href="#advanced-tools" class="button button-light">Tìm theo nhu cầu ↗</a></div><img src="images/moisturizer.webp" alt="Hũ kem dưỡng trên nền hoa pastel" loading="lazy"></section>
+  <section class="advanced-section wrap" id="advanced-tools" aria-labelledby="advanced-title"><div class="section-eyebrow">A LITTLE HELP FROM GLOW EDIT</div><div class="section-heading"><div><h2 id="advanced-title">Tìm món hợp với bạn</h2><p>Chọn vài tiêu chí nhanh hoặc xem trước một ảnh; các tính năng nâng cao chỉ mang tính minh họa.</p></div></div><section aria-labelledby="need-finder-title" class="need-finder">
+<div class="need-finder-heading"><span aria-hidden="true" class="need-finder-icon">✳</span><div><p class="eyebrow">PERSONAL BEAUTY MATCH</p><h3 id="need-finder-title">Tìm sản phẩm theo nhu cầu</h3><p>Chọn vài tiêu chí bên dưới để lọc nhanh những món phù hợp hơn với bạn.</p></div></div>
+<div class="need-finder-fields">
+<label class="control-label" for="skin-filter">Loại da
             <select id="skin-filter"><option value="all">Tất cả loại da</option><option value="dry">Da khô</option><option value="oily">Da dầu</option><option value="combination">Da hỗn hợp</option><option value="sensitive">Da nhạy cảm</option><option value="normal">Da thường</option><option value="body">Da cơ thể</option><option value="any">Mọi loại da</option></select>
-          </label>
-          <label class="control-label" for="need-filter">Nhu cầu chính
+</label>
+<label class="control-label" for="need-filter">Nhu cầu chính
             <select id="need-filter"><option value="all">Chọn nhu cầu</option><option value="hydration">Cấp ẩm / da khô</option><option value="soothing">Làm dịu da</option><option value="barrier">Hỗ trợ hàng rào da</option><option value="makeup">Trang điểm</option><option value="body-care">Chăm sóc cơ thể</option></select>
-          </label>
-          <label class="control-label" for="need-category-filter">Danh mục
+</label>
+<label class="control-label" for="need-category-filter">Danh mục
             <select id="need-category-filter"><option value="all">Tất cả danh mục</option><option value="skincare">Chăm sóc da</option><option value="makeup">Trang điểm</option><option value="body">Chăm sóc cơ thể</option></select>
-          </label>
-          <label class="control-label" for="price-filter">Khoảng giá
+</label>
+<label class="control-label" for="price-filter">Khoảng giá
             <select id="price-filter"><option value="all">Mọi mức giá</option><option value="0-200000">Dưới 200.000₫</option><option value="200000-300000">200.000–300.000₫</option><option value="300000-500000">300.000–500.000₫</option></select>
-          </label>
-        </div>
-        <div class="need-finder-bottom"><p>Gợi ý tham khảo theo thông tin minh họa của sản phẩm, không thay thế tư vấn da liễu.</p><button class="button button-primary" id="apply-needs" type="button">Tìm sản phẩm phù hợp <span aria-hidden="true">→</span></button></div>
-      </section>
-
-      <section class="image-search-panel" aria-labelledby="image-search-title">
-        <div class="image-search-copy">
-          <p class="eyebrow">VISUAL PRODUCT SEARCH</p>
-          <h3 id="image-search-title">Tìm sản phẩm bằng hình ảnh</h3>
-          <p>Tải ảnh món đồ bạn đang tìm. Ảnh được xem ngay trên trình duyệt; chọn thêm danh mục để lọc sản phẩm minh họa tương ứng.</p>
-        </div>
-        <div class="image-search-controls">
-          <label class="image-upload-drop" for="product-image-upload">
-            <span class="image-upload-icon" aria-hidden="true">＋</span>
-            <strong>Chọn ảnh từ thiết bị</strong>
-            <small>JPG, PNG, WEBP · tối đa 8 MB</small>
-            <input id="product-image-upload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
-          </label>
-          <div class="image-preview-wrap" id="image-preview-wrap" hidden>
-            <img id="image-preview" alt="Ảnh bạn đã chọn để tìm sản phẩm" />
-            <button type="button" id="remove-image" class="text-link">Xóa ảnh</button>
-          </div>
-          <label class="control-label" for="image-category">Bạn muốn tìm nhóm sản phẩm nào?
+</label>
+</div>
+<div class="need-finder-bottom"><p>Gợi ý tham khảo theo thông tin minh họa của sản phẩm, không thay thế tư vấn da liễu.</p><button class="button button-primary" id="apply-needs" type="button">Tìm sản phẩm phù hợp <span aria-hidden="true">→</span></button></div>
+</section><section aria-labelledby="image-search-title" class="image-search-panel">
+<div class="image-search-copy">
+<p class="eyebrow">VISUAL PRODUCT SEARCH</p>
+<h3 id="image-search-title">Tìm sản phẩm bằng hình ảnh</h3>
+<p>Chọn một ảnh sản phẩm để Glow Edit so sánh màu sắc và bố cục với ảnh của 16 sản phẩm mẫu. Không cần chọn danh mục; có thể thu hẹp nếu muốn.</p>
+</div>
+<div class="image-search-controls">
+<label class="image-upload-drop" for="product-image-upload">
+<span aria-hidden="true" class="image-upload-icon">＋</span>
+<strong>Chọn ảnh từ thiết bị</strong>
+<small>JPG, PNG, WEBP · tối đa 8 MB</small>
+<input accept="image/png,image/jpeg,image/webp" id="product-image-upload" type="file">
+</input></label>
+<div class="image-preview-wrap" hidden="" id="image-preview-wrap">
+<img alt="Ảnh bạn đã chọn để tìm sản phẩm" id="image-preview">
+<button class="text-link" id="remove-image" type="button">Xóa ảnh</button>
+</img></div>
+<label class="control-label" for="image-category">Giới hạn phạm vi tìm kiếm (không bắt buộc)
             <select id="image-category">
-              <option value="all">Tất cả danh mục</option>
-              <option value="skincare">Chăm sóc da</option>
-              <option value="makeup">Trang điểm</option>
-              <option value="body">Chăm sóc cơ thể</option>
-            </select>
-          </label>
-          <button class="button button-primary" id="search-by-image" type="button">Tìm sản phẩm <span aria-hidden="true">→</span></button>
-        </div>
-        <p class="image-search-status" id="image-search-status" role="status">Chưa có ảnh nào được chọn.</p>
-        <p class="image-search-disclaimer">Bản demo hiện dùng ảnh tải lên để xem trước và lọc theo danh mục bạn chọn; chưa tự nhận diện vật thể hoặc so khớp hình ảnh bằng AI.</p>
-      </section>
-
-      <div class="product-tools">
-        <p class="result-count" id="result-count" aria-live="polite">Hiển thị <strong>4</strong> sản phẩm</p>
-        <div class="tool-controls">
-          <label class="control-label" for="category-filter">Danh mục
-            <select id="category-filter">
-              <option value="all">Tất cả danh mục</option>
-              <option value="skincare">Chăm sóc da</option>
-              <option value="makeup">Trang điểm</option>
-              <option value="body">Chăm sóc cơ thể</option>
-            </select>
-          </label>
-          <label class="control-label" for="sort-select">Sắp xếp
-            <select id="sort-select">
-              <option value="featured">Đề xuất</option>
-              <option value="price-asc">Giá thấp đến cao</option>
-              <option value="price-desc">Giá cao đến thấp</option>
-              <option value="name-asc">Tên sản phẩm A–Z</option>
-            </select>
-          </label>
-          <button class="clear-filters" id="clear-filters" type="button">Xóa lọc</button>
-        </div>
-      </div>
-
-      <div class="product-grid" id="product-grid">
-        <article class="product-card" data-id="barrier-cream" data-name="Gel dưỡng ẩm phục hồi da Daily Barrier Cream" data-brand="Skincare Studio" data-category="skincare" data-price="289000" data-skin="dry normal combination" data-needs="hydration barrier" data-featured="1">
-          <div class="product-image image-cream">
-            <span class="product-badge badge-sand">BÁN CHẠY</span>
-            <button class="favorite-button" type="button" aria-label="Thêm Gel dưỡng ẩm vào yêu thích" aria-pressed="false">♡</button>
-            <img src="images/moisturizer.svg" alt="Hũ kem dưỡng ẩm Daily Barrier Cream" loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-brand">SKINCARE STUDIO</p>
-            <h3>Gel dưỡng ẩm phục hồi da Daily Barrier Cream</h3>
-            <p class="product-meta">Dưỡng ẩm <span>·</span> 50 ml</p>
-            <div class="product-price"><strong>289.000₫</strong><del>390.000₫</del><span class="discount">-26%</span></div>
-            <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm minh họa cho bước dưỡng ẩm hằng ngày. Vui lòng kiểm tra thành phần và hướng dẫn sử dụng của sản phẩm thực tế trước khi mua.</p></details>
-            <button class="add-to-cart" type="button" data-add="barrier-cream">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
-          </div>
-        </article>
-
-        <article class="product-card" data-id="comfort-serum" data-name="Serum cấp ẩm và làm dịu Skin Comfort Serum" data-brand="Glow Lab" data-category="skincare" data-price="325000" data-skin="sensitive normal dry oily combination" data-needs="hydration soothing" data-featured="2">
-          <div class="product-image image-serum">
-            <span class="product-badge badge-green">GỢI Ý</span>
-            <button class="favorite-button" type="button" aria-label="Thêm Serum vào yêu thích" aria-pressed="false">♡</button>
-            <img src="images/serum.svg" alt="Chai serum Skin Comfort Serum" loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-brand">GLOW LAB</p>
-            <h3>Serum cấp ẩm và làm dịu Skin Comfort Serum</h3>
-            <p class="product-meta">Tinh chất dưỡng <span>·</span> 30 ml</p>
-            <div class="product-price"><strong>325.000₫</strong><del>420.000₫</del><span class="discount">-23%</span></div>
-            <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm minh họa thuộc nhóm tinh chất dưỡng da. Nội dung công dụng chỉ mang tính trình bày giao diện, không phải tuyên bố hiệu quả thực tế.</p></details>
-            <button class="add-to-cart" type="button" data-add="comfort-serum">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
-          </div>
-        </article>
-
-        <article class="product-card" data-id="lip-tint" data-name="Son tint bóng Dewy Color Lip Tint" data-brand="Color Play" data-category="makeup" data-price="179000" data-skin="any" data-needs="makeup" data-featured="3">
-          <div class="product-image image-lip">
-            <span class="product-badge badge-rose">MAKEUP PICK</span>
-            <button class="favorite-button" type="button" aria-label="Thêm Son tint vào yêu thích" aria-pressed="false">♡</button>
-            <img src="images/lip-tint.svg" alt="Son tint bóng Dewy Color Lip Tint" loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-brand">COLOR PLAY</p>
-            <h3>Son tint bóng Dewy Color Lip Tint</h3>
-            <p class="product-meta">Trang điểm môi <span>·</span> 4 g</p>
-            <div class="product-price"><strong>179.000₫</strong><del>249.000₫</del><span class="discount">-28%</span></div>
-            <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm son môi minh họa dùng để thể hiện cách sắp xếp thông tin, giá và nút thao tác trên thẻ sản phẩm.</p></details>
-            <button class="add-to-cart" type="button" data-add="lip-tint">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
-          </div>
-        </article>
-
-        <article class="product-card" data-id="body-lotion" data-name="Sữa dưỡng thể mềm mịn Soft Glow Body Lotion" data-brand="Body Ritual" data-category="body" data-price="215000" data-skin="body dry normal" data-needs="hydration body-care" data-featured="4">
-          <div class="product-image image-body">
-            <span class="product-badge badge-blue">DAILY PICK</span>
-            <button class="favorite-button" type="button" aria-label="Thêm Sữa dưỡng thể vào yêu thích" aria-pressed="false">♡</button>
-            <img src="images/body-lotion.svg" alt="Chai sữa dưỡng thể Soft Glow Body Lotion" loading="lazy">
-          </div>
-          <div class="product-info">
-            <p class="product-brand">BODY RITUAL</p>
-            <h3>Sữa dưỡng thể mềm mịn Soft Glow Body Lotion</h3>
-            <p class="product-meta">Chăm sóc cơ thể <span>·</span> 250 ml</p>
-            <div class="product-price"><strong>215.000₫</strong><del>285.000₫</del><span class="discount">-25%</span></div>
-            <details class="product-description"><summary>Thông tin sản phẩm</summary><p>Sản phẩm minh họa thuộc nhóm chăm sóc cơ thể. Tên gọi, giá và mô tả không đại diện cho hàng hóa đang được bán ngoài thực tế.</p></details>
-            <button class="add-to-cart" type="button" data-add="body-lotion">Thêm vào giỏ <span aria-hidden="true">＋</span></button>
-          </div>
-        </article>
-      </div>
-      <div class="empty-results" id="empty-results" hidden>
-        <span aria-hidden="true">⌕</span>
-        <h3>Chưa tìm thấy sản phẩm phù hợp</h3>
-        <p>Thử từ khóa khác hoặc xóa bộ lọc để xem toàn bộ sản phẩm mẫu.</p>
-        <button class="button button-primary" type="button" id="empty-reset">Xem tất cả sản phẩm</button>
-      </div>
-    </section>
-
-    <section class="cart-section wrap" id="cart" aria-labelledby="cart-title">
-      <div class="cart-heading">
-        <div><p class="eyebrow">YOUR SELECTION</p><h2 id="cart-title">Giỏ hàng của bạn</h2><p class="section-intro">Kiểm tra sản phẩm và số lượng trước khi tiếp tục.</p></div>
-        <span class="cart-preview-icon" aria-hidden="true">♧</span>
-      </div>
-      <div class="cart-layout">
-        <div class="cart-items-panel">
-          <div class="cart-items" id="cart-items" aria-live="polite">
-            <div class="cart-empty-state"><span aria-hidden="true">♡</span><strong>Giỏ hàng đang trống</strong><p>Thêm sản phẩm bạn quan tâm để xem tạm tính tại đây.</p><a class="text-link" href="#products">Tiếp tục xem sản phẩm →</a></div>
-          </div>
-        </div>
-        <aside class="order-summary" aria-labelledby="summary-title">
-          <h3 id="summary-title">Tóm tắt đơn hàng</h3>
-          <div class="summary-line"><span>Số sản phẩm</span><strong id="summary-quantity">0</strong></div>
-          <div class="summary-line"><span>Tạm tính</span><strong id="summary-subtotal">0₫</strong></div>
-          <div class="summary-line"><span>Vận chuyển</span><span class="shipping-note">Chưa tính</span></div>
-          <div class="summary-total"><span>Tổng tạm tính</span><strong id="summary-total">0₫</strong></div>
-          <button class="button button-primary checkout-button" id="checkout-demo" type="button" disabled>Tiếp tục <span aria-hidden="true">→</span></button>
-          <p class="summary-disclaimer">Chức năng thanh toán chưa được tích hợp. Tổng tiền chỉ là phép tính minh họa cho giao diện.</p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="closing-note">
-      <div class="wrap closing-inner"><span aria-hidden="true">✳</span><div><h2>Một trải nghiệm mua sắm rõ ràng hơn</h2><p>Tìm nhanh hơn, xem thông tin dễ hơn và kiểm tra giỏ hàng ngay trên cùng một trang.</p></div><a href="#top" class="text-link">Về đầu trang ↑</a></div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <a class="brand footer-brand" href="#top"><span class="brand-symbol" aria-hidden="true">g.</span><span class="brand-wordmark">glow<span>edit</span><small>THE BEAUTY EDIT</small></span></a>
-      <p>Giao diện minh họa phục vụ bài tập Phát triển ứng dụng WEB/TMĐT.</p>
-      <a href="https://thegioiskinfood.com/" target="_blank" rel="noopener noreferrer">Website tham khảo ↗</a>
-    </div>
-    <div class="wrap footer-bottom">Tên, hình ảnh minh họa, mô tả và giá sản phẩm trong trang này không phải dữ liệu bán hàng chính thức.</div>
-  </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<option value="all">Tất cả danh mục</option>
+<option value="skincare">Chăm sóc da</option>
+<option value="makeup">Trang điểm</option>
+<option value="body">Chăm sóc cơ thể</option>
+</select>
+</label>
+<button class="button button-primary" id="search-by-image" type="button">So sánh hình ảnh <span aria-hidden="true">→</span></button>
+</div>
+<p class="image-search-status" id="image-search-status" role="status" aria-live="polite">Chọn ảnh, sau đó nhấn “So sánh hình ảnh” để tìm trong danh mục.</p>
+<div class="visual-search-results" id="visual-search-results" hidden>
+  <div class="visual-results-heading">
+    <div><span class="visual-results-eyebrow">KẾT QUẢ SO SÁNH ẢNH</span><h4>Sản phẩm có hình ảnh gần giống</h4><p id="visual-results-summary">Các gợi ý được xếp theo đặc trưng hình ảnh, không phải nhận diện tên sản phẩm.</p></div>
+    <button class="visual-clear" type="button" id="visual-search-reset">Xóa kết quả tìm bằng ảnh</button>
+  </div>
+  <div class="visual-results-grid" id="visual-results-grid"></div>
+</div>
+<p class="image-search-disclaimer">Ảnh được phân tích ngay trong trình duyệt, không gửi lên máy chủ. Thuật toán so sánh màu sắc, vùng hình và tương phản, nên chỉ gợi ý ảnh gần giống trong danh mục, không thể nhận diện chắc chắn thương hiệu, thành phần hay tình trạng da. Để nhận diện sản phẩm từ ảnh bất kỳ một cách đáng tin cậy cần mô hình thị giác AI và dữ liệu huấn luyện phù hợp.</p>
+</section></section>
+  <section aria-labelledby="cart-title" class="cart-section wrap" id="cart">
+<div class="cart-heading">
+<div><p class="eyebrow">YOUR SELECTION</p><h2 id="cart-title">Giỏ hàng của bạn</h2><p class="section-intro">Kiểm tra sản phẩm và số lượng trước khi tiếp tục.</p></div>
+<span aria-hidden="true" class="cart-preview-icon">♡</span>
+</div>
+<div class="cart-layout">
+<div class="cart-items-panel">
+<div aria-live="polite" class="cart-items" id="cart-items">
+<div class="cart-empty-state"><span aria-hidden="true">♡</span><strong>Giỏ hàng đang trống</strong><p>Thêm sản phẩm bạn quan tâm để xem tạm tính tại đây.</p><a class="text-link" href="#products">Tiếp tục xem sản phẩm →</a></div>
+</div>
+</div>
+<aside aria-labelledby="summary-title" class="order-summary">
+<h3 id="summary-title">Tóm tắt đơn hàng</h3>
+<div class="summary-line"><span>Số sản phẩm</span><strong id="summary-quantity">0</strong></div>
+<div class="summary-line"><span>Tạm tính</span><strong id="summary-subtotal">0₫</strong></div>
+<div class="summary-line"><span>Vận chuyển</span><span class="shipping-note">Chưa tính</span></div>
+<div class="summary-total"><span>Tổng tạm tính</span><strong id="summary-total">0₫</strong></div>
+<button class="button button-primary checkout-button" disabled="" id="checkout-demo" type="button">Tiếp tục <span aria-hidden="true">→</span></button>
+<p class="summary-disclaimer">Chức năng thanh toán chưa được tích hợp. Tổng tiền chỉ là phép tính minh họa cho giao diện.</p>
+</aside>
+</div>
+</section>
+  <section class="closing-note"><div class="wrap closing-inner"><div><span class="section-eyebrow">KEEP YOUR GLOW</span><h2>Đẹp hơn mỗi ngày, theo cách bạn chọn.</h2><p>Glow Edit — giao diện thương mại điện tử minh họa để học HTML5, CSS3 và cải thiện trải nghiệm người dùng.</p></div><a class="underlined-link" href="#top">Về đầu trang ↑</a></div></section>
+ </main>
+ <footer class="site-footer"><div class="wrap footer-inner"><div><a class="brand footer-brand" href="#top"><span class="brand-symbol" aria-hidden="true">✳</span><span class="brand-wordmark">glow<span>edit</span><small>THE BEAUTY EDIT</small></span></a><p>Phiên bản học tập, không có đặt hàng hoặc thanh toán thật.</p></div><div><strong>Khám phá</strong><a href="#products">Tất cả sản phẩm</a><a href="#categories">Danh mục</a><a href="#advanced-tools">Bộ lọc nhu cầu</a></div><div><strong>Thông tin</strong><a href="https://thegioiskinfood.com/" target="_blank" rel="noopener noreferrer">Website tham khảo ↗</a><span>Giá, tên và ảnh là dữ liệu minh họa</span></div></div><div class="wrap footer-bottom">© 2026 Glow Edit — Bài tập cải tiến giao diện website TMĐT. Không liên kết thương mại với thương hiệu tham khảo.</div></footer>
+ <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
